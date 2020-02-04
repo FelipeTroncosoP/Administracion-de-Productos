@@ -56,8 +56,8 @@ input[type="number"] {
 
 .sidebar {
     height: 100vh;
-    background-color: #360068;
-    box-shadow: 5px 7px 25px #333;
+    background-color: rgb(0, 184, 235);
+    box-shadow: 1px 7px 25px #333;
 
 }
 
@@ -69,7 +69,7 @@ input[type="number"] {
     transition: all .4s;
 }
 .sidebar-link:hover{
-    background-color: rgb(43, 0, 39);
+    background-color: rgb(0, 37, 117);
     border-radius: 5px;
 }
 .search-input {
@@ -78,18 +78,21 @@ input[type="number"] {
     border-radius: 0;
     border-bottom: 2px solid #999;
     transition: all .4s ;
+     
 }
 
 .search-input:focus {
     background: transparent;
     box-shadow: none;
-    border-bottom: 2px solid #dc3545;
+    border-bottom: 1px solid rgb(0, 184, 235);
+    color: white;
 }
 
 .search-button {
     border-radius: 50%;
     padding: 10px 16px;
     transition: all .4s;
+    
 }
 .search-button:hover{
     background-color: #eee;
@@ -101,6 +104,35 @@ input[type="number"] {
 
 }
 
+.paginador ul{
+    padding: 15px;
+    list-style: none;
+    background: #FFF;
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.paginador a{
+    color: #428bca;
+    border: 1px solid #ddd;
+    padding: 5px;
+    display: inline-block;
+    font-size: 14px;
+    text-align: center;
+    width: 35px;
+
+}
+
+.paginador a:hover{
+    background: #ddd;
+}
+
+.pageSelected{
+    color: #FFF;
+    background: #003768;
+    border: 1px solid #428bca;
+}
 .icon-bullet::after{
     content: "";
     position: absolute;

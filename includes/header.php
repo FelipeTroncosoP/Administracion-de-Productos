@@ -54,24 +54,35 @@
                 </div>
                 <!-- end sidebar-->
                 <!-- top-nav-->
-                <div class="col-xl-10 col-lg-9 col-md-9 ml-auto bg-dark fixed-top py-2 top-navbar">
+                <div class="col-xl-10 col-lg-9 col-md-9 ml-auto bg-secondary fixed-top py-2 top-navbar">
                     <div class="row align-items-center">
                         <div class="col-md-4">
                             <h4 class="text-light mb-0">Don Mateo Spa.</h4>
                         </div>
                         <div class="col-md-5">
-                            <form>
+                            <!-- 
+                                <form>
                                 <div class="input-group">
                                     <input type="text" class="form-control search-input" placeholder="Buscar...">
                                     <button type="button" class="btn btn-white search-button"><i class="fas fa-search text-danger"></i> </button>
                                 </div>
                             </form>
+                             -->
+
+                            <form action="buscar_productos.php" method="get" class="form_search">
+                                <div class="input-group">
+                                <input type="text" class="form-control search-input" name="busqueda" placeholder=". . .">
+                                <div class="input-group-append">
+                                <input type="submit" class="btn btn-white btn-sm search-button" value="Buscar">
+                                </div>
+                                </div>
+                            </form>
                         </div>
                         <div class="col-md-3">
                             <ul class="navbar-nav">
-                                <li class="nav-item icon-parent"><a href="#" class="nav-link icon-bullet"><i class="fas fa-comments text-muted fa-lg"></i></a></li>
-                                <li class="nav-item icon-parent"><a href="#" class="nav-link icon-bullet"><i class="fas fa-bell text-muted fa-lg"></i></a></li>
-                                <li class="nav-item ml-md-auto"><a href="" class="nav-link text-danger" data-toggle="modal" data-target="#sign-out">Cerrar Sesion <i class="fas fa-sign-out-alt text-danger fa-lg"></i></a></li>
+                                <li class="nav-item icon-parent"><a href="#" class="nav-link icon-bullet"><i class="fas fa-comments text-dark fa-lg"></i></a></li>
+                                <li class="nav-item icon-parent"><a href="#" class="nav-link icon-bullet"><i class="fas fa-bell text-dark fa-lg"></i></a></li>
+                                <li class="nav-item ml-md-auto"><a href="" class="nav-link text-dark bg-danger border border-danger rounded" data-toggle="modal" data-target="#sign-out">Cerrar Sesion <i class="fas fa-sign-out-alt text-dark fa-lg"></i></a></li>
                             </ul>
                         </div>
                     </div>

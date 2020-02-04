@@ -14,9 +14,9 @@ include("includes/header.php");
 <section>
 
 <?php 
-  $busqueda = '';
+  $busqueda = strtolower($_REQUEST['busqueda']);
   $search_categoria='';
-  if (empty($_REQUEST['busqueda']) && empty($_REQUEST['categoria']))
+  if ($busqueda)
   {
     header("location: mostrar_productos.php");
   }

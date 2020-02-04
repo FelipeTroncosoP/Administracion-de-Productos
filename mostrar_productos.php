@@ -12,6 +12,15 @@ include("includes/header.php");
 ?>
 
 <section>
+<?php 
+  $busqueda = '';
+  $search_categoria='';
+  if (empty($_REQUEST['busqueda']) && empty($_REQUEST['categoria']))
+  {
+    header("location: mostrar_productos.php");
+  }
+
+?>
         <div class="container-fluid">
             
             <div class="row">
@@ -50,7 +59,8 @@ include("includes/header.php");
                   if($result_categorias > 0){
                     while($categoria = mysqli_fetch_array($query_categorias)) {
                       ?>
-                      <option id="<?php echo $categoria["id_categoria"] ?>" value="/buscar_producto.php?categoria='<?php echo $categoria["id_categoria"] ?>'"> <?php echo $categoria["nombre_categoria"]; ?> </option>
+                      <option value="<?php echo $categoria["id_categoria"]; ?>"  
+                      id="<?php echo $categoria["id_categoria"] ?>"> <?php echo $categoria["nombre_categoria"]; ?> </option>
                       <?php
 
                     }
@@ -62,7 +72,26 @@ include("includes/header.php");
           </tr>
         </thead>
         <?php
-$consulta="SELECT * FROM productos";
+
+          //paginador
+          $sql_totales = $link->query("SELECT COUNT(*) as total_registro FROM productos");
+          $result_registros = mysqli_fetch_array($sql_totales);
+          $total_registro = $result_registros['total_registro'];
+
+          $por_pagina = 2;
+
+          if(empty($_GET['pagina']))
+          {
+            $pagina = 1;
+          }else{
+            $pagina = $_GET['pagina'];
+          }
+
+          $desde = ($pagina-1) * $por_pagina;
+          $total_paginas = ceil($total_registro / $por_pagina);
+
+
+$consulta="SELECT * FROM productos ORDER BY id_producto ASC LIMIT $desde,$por_pagina";
 $resultado = $link->query($consulta);
 
 ?>
@@ -88,8 +117,8 @@ echo $cat . " - " . $ext['nombre_categoria'];
 </td>
 
             <td>
-              <a href="/editar.php?id_producto='<?php echo $mostrar['id_producto']?>'" class="btn btn-secondary">Edit</a>
-              <a href="/eliminar.php?id_producto='<?php echo $mostrar['id_producto']?>'" class="btn btn-danger btn-delete">Delete</a>
+              <a href="/editar.php?id_producto='<?php echo $mostrar['id_producto']?>'" class="btn btn-secondary">Editar</a>
+              <a href="/eliminar.php?id_producto='<?php echo $mostrar['id_producto']?>'" class="btn btn-danger btn-delete">Eliminar</a>
             </td>
           </tr>
         <?php
@@ -99,6 +128,33 @@ echo $cat . " - " . $ext['nombre_categoria'];
         </tbody>
       </table>
 
+<div class="paginador">
+        <ul>
+        <?php 
+            if($pagina !=1){
+
+            
+        ?>
+          <li><a href="?pagina=<?php echo 1; ?>">|<</a></li>
+          <li><a href="?pagina=<?php echo $pagina-1; ?>"><<</a></li>
+            <?php 
+            }
+            for ($i=1; $i <= $total_paginas ; $i++){
+              if($i == $pagina){
+                echo '<li><a href="?pagina='.$i.'" class="pageSelected">'.$i.'</a></li>';
+              }else{
+              echo '<li><a href="?pagina='.$i.'">'.$i.'</a></li>';
+              }
+            }
+            if($pagina!=$total_paginas)
+            {
+          ?>
+         
+          <li><a href="?pagina=<?php echo $pagina+1; ?>">>></a></li>
+          <li><a href="?pagina=<?php echo $total_paginas; ?>">>|</a></li>
+            <?php } ?>
+        </ul>
+</div>
 
                 </div>
             </div>
