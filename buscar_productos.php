@@ -88,11 +88,13 @@ include("includes/header.php");
           </tr>
         </thead>
         <?php
-$consulta="SELECT * FROM productos";
+$consulta="SELECT * FROM productos WHERE nombre LIKE '%$busqueda%' OR id_producto LIKE '%$busqueda%'";
 $resultado = $link->query($consulta);
+
 
 ?>
         <tbody>
+       
         <?php
         while($mostrar=$resultado->fetch_assoc()){
 
